@@ -15,7 +15,7 @@ const urlAPI =
 export const fetchDataProduct = createAsyncThunk(
   "products/fetchDataProducts",
   async (page) => {
-    const res = await axios.get(`${urlAPI}?page=${page}&&limit=5`);
+    const res = await axios.get(`${urlAPI}?page=${page}&&limit=8`);
     return res.data;
   }
 );
