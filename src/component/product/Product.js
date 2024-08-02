@@ -5,10 +5,16 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Box, CardMedia } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 export default function Product(props) {
-  const { product } = props;
+  const { product, addItem } = props;
+  const dispatch = useDispatch();
   return (
-    <Card sx={{ maxWidth: 345, margin: 2, paddingX: 1, paddingY: 2 }}>
+    <Card
+      className="animate__animated animate__fadeIn"
+      sx={{ maxWidth: 345, margin: 2, paddingX: 1, paddingY: 2 }}
+    >
       <CardMedia
         component="img"
         height="140"
@@ -31,10 +37,18 @@ export default function Product(props) {
         >
           <Typography variant="h6">${product.price}</Typography>
         </Box>
+        <Box>
+          <Link to={`/detail/${product.id}`}>Chi tiết sản phẩm</Link>
+        </Box>
       </CardContent>
       <CardActions>
-        <Button variant="contained" size="medium">
-          Add to cart
+        <Button
+          variant="contained"
+          size="medium"
+          className="btn btn-success"
+          onClick={() => dispatch(addItem(product))}
+        >
+          Button
         </Button>
       </CardActions>
     </Card>

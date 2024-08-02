@@ -6,6 +6,8 @@ import Pagination from "react-js-pagination";
 import "./product.css";
 import Product from "./Product";
 import { Container, Grid } from "@mui/material";
+import Cart from "../cart/Cart";
+import { addItem } from "../../redux/cart/cartSlice";
 export default function Products() {
   const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useDispatch();
@@ -17,14 +19,14 @@ export default function Products() {
 
   useEffect(() => {
     dispatch(fetchDataProduct(currentPage));
-  }, [currentPage]);
+  }, [currentPage, dispatch]);
 
   return (
     <Container>
       <Grid container spacing={0}>
         {products.map((item, index) => (
           <Grid lg={3} md={4} sm={6} xs={6}>
-            <Product key={index} product={item} />
+            <Product key={index} product={item} addItem={addItem} />
           </Grid>
         ))}
       </Grid>
@@ -36,6 +38,7 @@ export default function Products() {
         pageRangeDisplayed={3}
         onChange={handle_Page}
       />
+      <Cart />
     </Container>
   );
 }
