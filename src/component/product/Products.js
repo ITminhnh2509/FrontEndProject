@@ -2,11 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDataProduct } from "./../../redux/productSlice";
 import Pagination from "react-js-pagination";
-
 import "./product.css";
 import Product from "./Product";
 import { Container, Grid } from "@mui/material";
-import Cart from "../cart/Cart";
 import { addItem } from "../../redux/cart/cartSlice";
 export default function Products() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -22,7 +20,7 @@ export default function Products() {
   }, [currentPage, dispatch]);
 
   return (
-    <Container>
+    <Container sx={{ marginTop: 10 }}>
       <Grid container spacing={0}>
         {products.map((item, index) => (
           <Grid lg={3} md={4} sm={6} xs={6}>
@@ -38,7 +36,6 @@ export default function Products() {
         pageRangeDisplayed={3}
         onChange={handle_Page}
       />
-      <Cart />
     </Container>
   );
 }

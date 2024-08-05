@@ -1,4 +1,4 @@
-import { Table } from "@mui/material";
+import { Box, Table } from "@mui/material";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeItem } from "../../redux/cart/cartSlice";
@@ -6,7 +6,7 @@ export default function Cart() {
   const { carts } = useSelector((state) => state.carts);
   const dispatch = useDispatch();
   return (
-    <div>
+    <Box sx={{ marginTop: 10 }}>
       <h1>Đây là giỏ hàng</h1>
       {carts != null ? (
         <Table hover>
@@ -38,6 +38,6 @@ export default function Cart() {
       ) : (
         <h3>Cart is empty</h3>
       )}
-    </div>
+    </Box>
   );
 }

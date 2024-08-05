@@ -8,6 +8,8 @@ import Product from "./pages/product/Product";
 import Cart from "./component/cart/Cart";
 import ProductDetail from "./pages/productDetail/ProductDetail";
 import { Routes, Route } from "react-router-dom";
+import Home from "./pages/home/Home";
+import Header from "./component/header/Header";
 export default function App() {
   return (
     <>
@@ -15,6 +17,8 @@ export default function App() {
         <Route path="/product" element={<Product />}></Route>
         <Route path="/cart" element={<Cart />}></Route>
         <Route path="/detail/:id" element={<ProductDetail />}></Route>
+        <Route path="/index" element={<Home />}></Route>
+        <Route path="/header" element={<Header />}></Route>
       </Routes>
     </>
   );

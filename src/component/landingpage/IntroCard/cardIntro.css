@@ -1,0 +1,7 @@
+.card-intro:hover {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-color: #f5d254;
+  color: #fff;
+  transform: translateY(-5%) !important;
+  transform: scale(1.2) !important;
+}
