@@ -4,15 +4,19 @@ import Footer from "../../component/footer/Footer";
 import { Container } from "@mui/material";
 import CardIntro from "../../component/landingpage/IntroCard/CardIntro";
 import CarouselIntro from "../../component/landingpage/carousel/CarouselIntro";
+import Warranty from "../../component/landingpage/IntroCard/Warranty";
+import BestSellet from "./BestSellet";
+import Ads from "../../component/landingpage/Ads/Ads";
 
 export default function Home() {
   return (
     <div>
       <Header />
-      <Container sx={{ marginTop: 10 }}>
-        <CarouselIntro />
-        <CardIntro />
-      </Container>
+      <CarouselIntro />
+      <Warranty />
+      <CardIntro />
+      <Ads />
+      <BestSellet />
       <Footer />
     </div>
   );

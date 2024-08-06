@@ -1,0 +1,12 @@
+.half-border-right {
+  border-right: 1px solid transparent !important;
+  border-image: linear-gradient(to right, black 50%, transparent 50%) 1 repeat !important;
+}
+.bg-warranty {
+  background-image: url("../../../img//bg-2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  height: 40vh;
+}

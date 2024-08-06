@@ -15,7 +15,6 @@ import {
   Container,
   Typography,
 } from "@mui/material";
-import img1 from "../../../img/img-intro-1.avif";
 export default function CardIntro() {
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -38,13 +37,20 @@ export default function CardIntro() {
   }, []);
   return (
     <>
-      <Container>
+      <Container sx={{ paddingTop: "20px", height: "50vh" }}>
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={2}>
-            <Grid sx={{ overflow: "hidden" }} xs={4}>
+            <Grid
+              data-aos="fade-up"
+              data-aos-offset="300"
+              sx={{ overflow: "hidden" }}
+              lg={4}
+              md={4}
+              sm={6}
+              xs={6}
+            >
               <Card
                 className="card-intro"
-                data-aos="fade-up"
                 sx={{ minWidth: 275, textAlign: "center" }}
               >
                 <CardContent>
@@ -64,10 +70,17 @@ export default function CardIntro() {
                 <CardActions></CardActions>
               </Card>
             </Grid>
-            <Grid sx={{ overflow: "hidden" }} xs={4}>
+            <Grid
+              data-aos="fade-up"
+              data-aos-offset="300"
+              sx={{ overflow: "hidden" }}
+              lg={4}
+              md={4}
+              sm={6}
+              xs={6}
+            >
               <Card
                 className="card-intro"
-                data-aos="fade-up"
                 sx={{ minWidth: 275, textAlign: "center" }}
               >
                 <CardContent>
@@ -87,10 +100,17 @@ export default function CardIntro() {
                 <CardActions></CardActions>
               </Card>
             </Grid>
-            <Grid sx={{ overflow: "hidden" }} xs={4}>
+            <Grid
+              data-aos="fade-up"
+              data-aos-offset="300"
+              sx={{ overflow: "hidden" }}
+              lg={4}
+              md={4}
+              sm={6}
+              xs={6}
+            >
               <Card
                 className="card-intro"
-                data-aos="fade-up"
                 sx={{ minWidth: 275, textAlign: "center" }}
               >
                 <CardContent>
@@ -110,10 +130,17 @@ export default function CardIntro() {
                 <CardActions></CardActions>
               </Card>
             </Grid>
-            <Grid sx={{ overflow: "hidden" }} xs={4}>
+            <Grid
+              data-aos="fade-up"
+              data-aos-offset="300"
+              sx={{ overflow: "hidden" }}
+              lg={4}
+              md={4}
+              sm={6}
+              xs={6}
+            >
               <Card
                 className="card-intro"
-                data-aos="fade-up"
                 sx={{ minWidth: 275, textAlign: "center" }}
               >
                 <CardContent>
@@ -133,10 +160,17 @@ export default function CardIntro() {
                 <CardActions></CardActions>
               </Card>
             </Grid>
-            <Grid sx={{ overflow: "hidden" }} xs={4}>
+            <Grid
+              data-aos="fade-up"
+              data-aos-offset="300"
+              sx={{ overflow: "hidden" }}
+              lg={4}
+              md={4}
+              sm={6}
+              xs={6}
+            >
               <Card
                 className="card-intro"
-                data-aos="fade-up"
                 sx={{ minWidth: 275, textAlign: "center" }}
               >
                 <CardContent>
@@ -156,10 +190,17 @@ export default function CardIntro() {
                 <CardActions></CardActions>
               </Card>
             </Grid>
-            <Grid sx={{ overflow: "hidden" }} xs={4}>
+            <Grid
+              data-aos="fade-up"
+              data-aos-offset="300"
+              sx={{ overflow: "hidden" }}
+              lg={4}
+              md={4}
+              sm={6}
+              xs={6}
+            >
               <Card
                 className="card-intro"
-                data-aos="fade-up"
                 sx={{ minWidth: 275, textAlign: "center" }}
               >
                 <CardContent>

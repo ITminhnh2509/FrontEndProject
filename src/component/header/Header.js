@@ -14,24 +14,21 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
-
+import logo from "../../img/logo.png";
+import "./header.css";
 const drawerHeight = 240;
 
 function Header(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const navItems = ["product", "cart", "index"];
+  const navItems = ["product", "cart"];
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <Link to={"/index"}>
-        <Typography variant="h6" sx={{ my: 2 }} component={Link} to={`/index`}>
-          MUI
-        </Typography>
-      </Link>
+      <Link to={"/"}>MUI</Link>
 
       <Divider />
       <List>
@@ -58,7 +55,7 @@ function Header(props) {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar component="nav">
+      <AppBar sx={{ background: "#493401" }} component="nav">
         <Toolbar
           sx={{
             display: "flex",
@@ -78,9 +75,11 @@ function Header(props) {
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, textAlign: "center" }}
+            sx={{ flexGrow: 1, textAlign: "center", textDecoration: "none" }}
           >
-            MUI
+            <Link to={"/"} style={{ textDecoration: "none", color: "#ffff" }}>
+              <img className="logo-style" src={logo} />
+            </Link>
           </Typography>
           <Box
             sx={{
