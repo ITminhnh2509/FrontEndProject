@@ -12,6 +12,7 @@ import {
   CardMedia,
   CardContent,
   Button,
+  Container,
 } from "@mui/material";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -79,62 +80,67 @@ const BestSeller = () => {
   };
 
   return (
-    <Box
-      data-aos="fade-up"
-      data-duration="1000"
-      data-aos-offset="300"
-      sx={{
-        width: "80%",
-        margin: "0 auto",
-        padding: "40px 0",
-        position: "relative",
-      }}
-    >
-      <Slider {...settings} ref={sliderRef}>
-        {products.map((product) => (
-          <Card key={product.id} sx={{ padding: "10px", overflow: "hidden" }}>
-            <CardMedia
-              component="img"
-              alt={product.name}
-              height="200"
-              image={product.img}
-              className="card-intro"
-            />
-            <CardContent sx={{ textAlign: "center" }}>
-              <Typography variant="h6">{product.name}</Typography>
-              <Typography variant="body1" color="text.secondary">
-                {product.price}
-              </Typography>
-            </CardContent>
-          </Card>
-        ))}
-      </Slider>
-      <Button
-        variant="contained"
-        onClick={handlePrev}
+    <Container>
+      <Typography variant="h3" sx={{ textAlign: "center" }}>
+        Products
+      </Typography>
+      <Box
+        data-aos="fade-up"
+        data-duration="1000"
+        data-aos-offset="300"
         sx={{
-          position: "absolute",
-          top: "50%",
-          left: "0",
-          transform: "translateY(-50%)",
+          width: "80%",
+          margin: "0 auto",
+          padding: "40px 0",
+          position: "relative",
         }}
       >
-        <ArrowBackIosIcon />
-      </Button>
-      <Button
-        variant="contained"
-        onClick={handleNext}
-        sx={{
-          position: "absolute",
-          top: "50%",
-          right: "0",
-          transform: "translateY(-50%)",
-          width: "20px",
-        }}
-      >
-        <ArrowForwardIosIcon />
-      </Button>
-    </Box>
+        <Slider {...settings} ref={sliderRef}>
+          {products.map((product) => (
+            <Card key={product.id} sx={{ padding: "10px", overflow: "hidden" }}>
+              <CardMedia
+                component="img"
+                alt={product.name}
+                height="200"
+                image={product.img}
+                className="card-intro"
+              />
+              <CardContent sx={{ textAlign: "center" }}>
+                <Typography variant="h6">{product.name}</Typography>
+                <Typography variant="body1" color="text.secondary">
+                  {product.price}
+                </Typography>
+              </CardContent>
+            </Card>
+          ))}
+        </Slider>
+        <Button
+          variant="contained"
+          onClick={handlePrev}
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "0",
+            transform: "translateY(-50%)",
+          }}
+        >
+          <ArrowBackIosIcon />
+        </Button>
+        <Button
+          variant="contained"
+          onClick={handleNext}
+          sx={{
+            position: "absolute",
+            top: "50%",
+            right: "0",
+            transform: "translateY(-50%)",
+            width: "20px",
+          }}
+        >
+          <ArrowForwardIosIcon />
+        </Button>
+      </Box>
+    </Container>
   );
 };
 

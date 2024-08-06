@@ -28,7 +28,7 @@ export default function Ads() {
       className="bg-ads"
       maxWidth="fluid"
       sx={{
-        marginTop: "50px",
+        marginTop: "70px",
         height: "40vh",
         paddingTop: "60px",
         color: "#fff",

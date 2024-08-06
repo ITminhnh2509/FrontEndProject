@@ -37,9 +37,9 @@ export default function CardIntro() {
   }, []);
   return (
     <>
-      <Container sx={{ paddingTop: "20px", height: "50vh" }}>
+      <Container sx={{ paddingTop: "20px", height: "70vh" }}>
         <Box sx={{ flexGrow: 1 }}>
-          <Grid container spacing={2}>
+          <Grid container spacing={5} sx={{ margin: "30px" }}>
             <Grid
               data-aos="fade-up"
               data-aos-offset="300"
