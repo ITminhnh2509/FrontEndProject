@@ -1,24 +1,12 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { Button, Container, Paper } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
-import SavingsIcon from "@mui/icons-material/Savings";
-import LocalShippingIcon from "@mui/icons-material/LocalShipping";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import PaymentIcon from "@mui/icons-material/Payment";
+import { Button, Container } from "@mui/material";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "./ads.css";
-import { useTheme } from "@mui/material/styles";
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
-  >
-    •
-  </Box>
-);
+import { Link } from "react-router-dom";
+
 export default function Ads() {
   useEffect(() => {
     AOS.init();
@@ -52,9 +40,15 @@ export default function Ads() {
           >
             Free shipping on orders over $99
           </Typography>
-          <Button sx={{ marginTop: "30px" }} variant="contained" size="medium">
-            Shop now
-          </Button>
+          <Link to="/product">
+            <Button
+              sx={{ marginTop: "30px" }}
+              variant="contained"
+              size="medium"
+            >
+              Shop now
+            </Button>
+          </Link>
         </Box>
       </Container>
     </Container>

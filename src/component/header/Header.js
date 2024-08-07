@@ -20,17 +20,15 @@ import "./header.css";
 import { useSelector } from "react-redux";
 
 const drawerWidth = 240;
-const appBarHeight = 64; // Adjust this to match your AppBar height
+const appBarHeight = 64;
 
 function Header(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
 
-  const navItems = ["product", "cart"];
+  const navItems = ["product"];
 
-  // Access cart state from the Redux store
   const cartItems = useSelector((state) => state.carts.carts);
   const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
@@ -108,7 +106,7 @@ function Header(props) {
             sx={{
               display: { xs: "none", sm: "block" },
               textAlign: "center",
-              position: "relative", // Necessary for positioning the cart dropdown
+              position: "relative",
             }}
           >
             {navItems.map((item) => (
@@ -121,15 +119,7 @@ function Header(props) {
                 {item}
               </Button>
             ))}
-            <IconButton
-              color="inherit"
-              onClick={handleCartClick}
-              sx={{ position: "relative" }} // Position relative to show badge
-            >
-              <Badge badgeContent={cartCount} color="secondary">
-                <CartIcon />
-              </Badge>
-            </IconButton>
+
             <Menu
               anchorEl={anchorEl}
               open={Boolean(anchorEl)}
@@ -179,6 +169,15 @@ function Header(props) {
               </MenuItem>
             </Menu>
           </Box>
+          <IconButton
+            color="inherit"
+            onClick={handleCartClick}
+            sx={{ position: "relative" }}
+          >
+            <Badge badgeContent={cartCount} color="secondary">
+              <CartIcon />
+            </Badge>
+          </IconButton>
         </Toolbar>
       </AppBar>
       <Box component="nav">
@@ -188,7 +187,7 @@ function Header(props) {
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+            keepMounted: true,
           }}
           sx={{
             display: { xs: "block", sm: "none" },

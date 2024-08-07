@@ -4,27 +4,73 @@ import { fetchDataProduct } from "./../../redux/productSlice";
 import Pagination from "react-js-pagination";
 import "./product.css";
 import Product from "./Product";
-import { Container, Grid } from "@mui/material";
+import { Container, Grid, TextField, Select, MenuItem } from "@mui/material";
 import { addItem } from "../../redux/cart/cartSlice";
+
 export default function Products() {
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [category, setCategory] = useState("");
+  const [material, setMaterial] = useState("");
+
   const dispatch = useDispatch();
-  const { products, totalPage } = useSelector((state) => state.products);
+  const { products, totalPage, categories, materials } = useSelector(
+    (state) => state.products
+  );
 
   const handle_Page = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
   useEffect(() => {
-    dispatch(fetchDataProduct(currentPage));
-  }, [currentPage, dispatch]);
+    dispatch(
+      fetchDataProduct({ page: currentPage, searchTerm, category, material })
+    );
+    window.scrollTo(0, 0);
+  }, [currentPage, searchTerm, category, material, dispatch]);
 
   return (
     <Container sx={{ marginTop: 10 }}>
+      <TextField
+        label="Search Product"
+        variant="outlined"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        fullWidth
+        sx={{ marginBottom: 2 }}
+      />
+      <Select
+        value={category}
+        onChange={(e) => setCategory(e.target.value)}
+        displayEmpty
+        fullWidth
+        sx={{ marginBottom: 2 }}
+      >
+        <MenuItem value="">All Categories</MenuItem>
+        {categories.map((cat, index) => (
+          <MenuItem key={index} value={cat}>
+            {cat}
+          </MenuItem>
+        ))}
+      </Select>
+      <Select
+        value={material}
+        onChange={(e) => setMaterial(e.target.value)}
+        displayEmpty
+        fullWidth
+        sx={{ marginBottom: 2 }}
+      >
+        <MenuItem value="">All Materials</MenuItem>
+        {materials.map((mat, index) => (
+          <MenuItem key={index} value={mat}>
+            {mat}
+          </MenuItem>
+        ))}
+      </Select>
       <Grid container spacing={0}>
         {products.map((item, index) => (
-          <Grid lg={3} md={4} sm={6} xs={6}>
-            <Product key={index} product={item} addItem={addItem} />
+          <Grid item lg={3} md={4} sm={6} xs={6} key={index}>
+            <Product product={item} addItem={addItem} />
           </Grid>
         ))}
       </Grid>
@@ -32,7 +78,7 @@ export default function Products() {
       <Pagination
         activePage={currentPage}
         itemsCountPerPage={8}
-        totalItemsCount={totalPage}
+        totalItemsCount={totalPage * 8}
         pageRangeDisplayed={3}
         onChange={handle_Page}
       />

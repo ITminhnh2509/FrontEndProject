@@ -9,6 +9,7 @@
     "@mui/icons-material": "^5.16.6",
     "@mui/material": "^5.16.6",
     "@reduxjs/toolkit": "^2.2.7",
+    "@sweetalert2/theme-material-ui": "^5.0.17",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -27,6 +28,7 @@
     "react-transition-group": "^4.4.5",
     "redux": "^5.0.1",
     "slick-carousel": "^1.8.1",
+    "sweetalert2": "^11.12.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

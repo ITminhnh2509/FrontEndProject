@@ -18,6 +18,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
+
 const settings = {
   infinite: true,
   slidesToShow: 4,
@@ -25,7 +26,7 @@ const settings = {
   autoplay: true,
   autoplaySpeed: 2000,
   dots: true,
-  arrows: false, // Disable default arrows
+  arrows: false,
   responsive: [
     {
       breakpoint: 1024,
@@ -53,13 +54,11 @@ const settings = {
 
 const BestSeller = () => {
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.products.products);
-  const status = useSelector((state) => state.products.status);
-  const error = useSelector((state) => state.products.error);
+  const { products, status, error } = useSelector((state) => state.products);
   const sliderRef = useRef(null);
 
   useEffect(() => {
-    dispatch(fetchDataProduct(1));
+    dispatch(fetchDataProduct({ page: 1 }));
     AOS.init();
   }, [dispatch]);
 
@@ -86,7 +85,7 @@ const BestSeller = () => {
       </Typography>
       <Box
         data-aos="fade-up"
-        data-duration="1000"
+        data-aos-duration="1000"
         data-aos-offset="300"
         sx={{
           width: "80%",

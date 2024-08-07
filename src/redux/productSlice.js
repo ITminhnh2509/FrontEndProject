@@ -7,17 +7,26 @@ const initialState = {
   status: "start",
   error: "",
   totalPage: 30,
-  product: {}, // Add this to hold a single product's details
+  product: {},
 };
 
 const urlAPI =
   "https://66a07ba77053166bcabb8de3.mockapi.io/studentt/v1/products";
-
 export const fetchDataProduct = createAsyncThunk(
   "products/fetchDataProducts",
-  async (page) => {
-    const res = await axios.get(`${urlAPI}?page=${page}&&limit=8`);
-    return res.data;
+  async ({ page, searchTerm, category, material }) => {
+    let query = `${urlAPI}?page=${page}&limit=8`;
+    if (searchTerm) query += `&name=${searchTerm}`;
+    if (category) query += `&category=${category}`;
+    if (material) query += `&material=${material}`;
+    const res = await axios.get(query);
+
+    const categories = [
+      ...new Set(res.data.map((product) => product.category)),
+    ];
+    const materials = [...new Set(res.data.map((product) => product.material))];
+
+    return { products: res.data, categories, materials, totalPage: 30 };
   }
 );
 
@@ -40,7 +49,10 @@ const productSlice = createSlice({
       })
       .addCase(fetchDataProduct.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.products = action.payload;
+        state.products = action.payload.products;
+        state.categories = action.payload.categories;
+        state.materials = action.payload.materials;
+        state.totalPage = action.payload.totalPage;
       })
       .addCase(fetchDataProduct.rejected, (state, action) => {
         state.status = "failed";

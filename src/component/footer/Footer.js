@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Divider, Grid, Typography } from "@mui/material";
+import { Container, Grid, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import logo from "../../img/logo.png";
 import "./footer.css";
@@ -29,7 +29,7 @@ export default function Footer() {
           <Grid lg={3} md={3} sm={6} xs={6}>
             <Typography>
               <Link to={"/"} style={{ textDecoration: "none", color: "#ffff" }}>
-                <img className="logo-style" src={logo} />
+                <img className="logo-style" src={logo} alt="hinhanh" />
               </Link>
             </Typography>
             <Typography>

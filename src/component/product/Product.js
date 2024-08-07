@@ -8,14 +8,18 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Box, CardMedia } from "@mui/material";
 import { addItem } from "../../redux/cart/cartSlice";
-
+import Swal from "sweetalert2";
 export default function Product(props) {
   const { product } = props;
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
-    // Always add 1 item to the cart
     dispatch(addItem({ ...product, quantity: 1 }));
+    Swal.fire({
+      title: "Congrats!",
+      text: "You Added the Product!",
+      icon: "success",
+    });
   };
 
   return (
