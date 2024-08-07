@@ -1,30 +1,72 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProductById } from "../../redux/productSlice";
+import {
+  CircularProgress,
+  Typography,
+  Box,
+  Card,
+  CardContent,
+  CardMedia,
+} from "@mui/material";
+import Header from "../../component/header/Header";
+import Footer from "../../component/footer/Footer";
+
 export default function ProductDetail() {
   const { id } = useParams();
-  const [data, setData] = useState({});
+  const dispatch = useDispatch();
+  const { status, products, error } = useSelector((state) => state.products);
+  const product = products.find((product) => product.id === id) || {};
+
   useEffect(() => {
-    fetchData();
-  }, []);
-  const url =
-    "https://66a07ba77053166bcabb8de3.mockapi.io/studentt/v1/products";
-  const fetchData = () => {
-    axios
-      .get(url + "/" + id)
-      .then(function (res) {
-        setData(res.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
+    dispatch(fetchProductById(id));
+  }, [dispatch, id]);
+
+  let content;
+
+  if (status === "loading") {
+    content = <CircularProgress />;
+  } else if (status === "succeeded") {
+    content = (
+      <Card sx={{ maxWidth: 600, margin: 2 }}>
+        <CardMedia
+          component="img"
+          height="300"
+          image={product.image || "https://picsum.photos/300/200"}
+          alt={product.name || "Product Image"}
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h4" component="div">
+            {product.name || "Product Name"}
+          </Typography>
+          <Typography variant="body1" color="text.secondary">
+            {product.description || "Product Description"}
+          </Typography>
+          <Typography variant="h5" sx={{ marginTop: 2 }}>
+            ${product.price || "0.00"}
+          </Typography>
+        </CardContent>
+      </Card>
+    );
+  } else if (status === "failed") {
+    content = (
+      <Typography variant="body1" color="error">
+        {error}
+      </Typography>
+    );
+  }
+
   return (
-    <div>
-      <h1>Product detail: {id}</h1>
-      <p>name: {data.name}</p>
-      <p>Description: {data.description}</p>
-      <p>price: {data.price}</p>
-    </div>
+    <>
+      <Header />
+      <Box sx={{ padding: 3, paddingTop: "64px" }}>
+        <Typography variant="h3" gutterBottom>
+          Product Detail
+        </Typography>
+        {content}
+      </Box>
+      <Footer />
+    </>
   );
 }

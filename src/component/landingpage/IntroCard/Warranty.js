@@ -1,54 +1,34 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Container, Paper } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
-import "./warranty.css";
 import SavingsIcon from "@mui/icons-material/Savings";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import PaymentIcon from "@mui/icons-material/Payment";
 import AOS from "aos";
 import "aos/dist/aos.css";
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
-  >
-    •
-  </Box>
-);
+import "./warranty.css";
+
 export default function Warranty() {
   useEffect(() => {
     AOS.init();
   }, []);
+
   return (
     <Container
       className="bg-warranty"
-      maxWidth="fluid"
-      sx={{
-        marginTop: "30px",
-        height: "60vh",
-        paddingTop: "300px",
-      }}
+      maxWidth="xl"
+      sx={{ paddingY: 15, height: "auto" }}
     >
-      <Container
-        data-aos="fade-up"
-        data-aos-offset="300"
-        sx={{ marginBottom: 4 }}
-      >
-        <Paper>
-          <Grid
-            sx={{ height: "170px" }}
-            container
-            spacing={2}
-            data-aos="fade-right"
-          >
+      <Box sx={{ padding: 4 }}>
+        <Paper sx={{ padding: 4 }}>
+          <Grid container spacing={2} data-aos="fade-right">
             <Grid
-              xs={6}
+              xs={12}
               sm={6}
-              md={6}
-              lg={3}
+              md={3}
               data-aos="flip-left"
               data-aos-delay="400"
               data-aos-duration="1000"
@@ -57,19 +37,23 @@ export default function Warranty() {
               <Box
                 sx={{
                   display: "flex",
-                  flexDirection: "row",
+                  flexDirection: { xs: "column", md: "row" },
                   alignItems: "center",
                   justifyContent: "center",
-                  height: "100%", // Adjust height as needed
-                  borderRight: "1px solid #ccc",
-                  boxShadow: "none",
+                  height: "100%",
+                  padding: "10px 20px",
+                  borderRight: { md: "1px solid #ccc", xs: "none" },
+                  borderBottom: { xs: "1px solid #ccc", md: "none" },
+                  textAlign: "center",
                 }}
               >
-                <Box>
-                  <LocalShippingIcon
-                    sx={{ fontSize: 50, marginRight: "30px" }}
-                  />
-                </Box>
+                <LocalShippingIcon
+                  sx={{
+                    fontSize: 50,
+                    marginRight: { md: "20px", xs: "0" },
+                    marginBottom: { xs: "10px", md: "0" },
+                  }}
+                />
                 <Box>
                   <Typography sx={{ fontWeight: "bold" }}>
                     Fast Delivery
@@ -81,10 +65,9 @@ export default function Warranty() {
               </Box>
             </Grid>
             <Grid
-              xs={6}
+              xs={12}
               sm={6}
-              md={6}
-              lg={3}
+              md={3}
               data-aos="flip-left"
               data-aos-delay="500"
               data-aos-duration="1000"
@@ -93,17 +76,23 @@ export default function Warranty() {
               <Box
                 sx={{
                   display: "flex",
-                  flexDirection: "row",
+                  flexDirection: { xs: "column", md: "row" },
                   alignItems: "center",
                   justifyContent: "center",
-                  height: "100%", // Adjust height as needed
-                  borderRight: "1px solid #ccc",
-                  boxShadow: "none",
+                  height: "100%",
+                  padding: "10px 20px",
+                  borderRight: { md: "1px solid #ccc", xs: "none" },
+                  borderBottom: { xs: "1px solid #ccc", md: "none" },
+                  textAlign: "center",
                 }}
               >
-                <Box>
-                  <SavingsIcon sx={{ fontSize: 50, marginRight: "30px" }} />
-                </Box>
+                <SavingsIcon
+                  sx={{
+                    fontSize: 50,
+                    marginRight: { md: "20px", xs: "0" },
+                    marginBottom: { xs: "10px", md: "0" },
+                  }}
+                />
                 <Box>
                   <Typography sx={{ fontWeight: "bold" }}>
                     Money Guarantee
@@ -115,10 +104,9 @@ export default function Warranty() {
               </Box>
             </Grid>
             <Grid
-              xs={6}
+              xs={12}
               sm={6}
-              md={6}
-              lg={3}
+              md={3}
               data-aos="flip-left"
               data-aos-delay="600"
               data-aos-duration="1000"
@@ -127,17 +115,23 @@ export default function Warranty() {
               <Box
                 sx={{
                   display: "flex",
-                  flexDirection: "row",
+                  flexDirection: { xs: "column", md: "row" },
                   alignItems: "center",
                   justifyContent: "center",
-                  height: "100%", // Adjust height as needed
-                  borderRight: "1px solid #ccc",
-                  boxShadow: "none",
+                  height: "100%",
+                  padding: "10px 20px",
+                  borderRight: { md: "1px solid #ccc", xs: "none" },
+                  borderBottom: { xs: "1px solid #ccc", md: "none" },
+                  textAlign: "center",
                 }}
               >
-                <Box>
-                  <AccessTimeIcon sx={{ fontSize: 50, marginRight: "30px" }} />
-                </Box>
+                <AccessTimeIcon
+                  sx={{
+                    fontSize: 50,
+                    marginRight: { md: "20px", xs: "0" },
+                    marginBottom: { xs: "10px", md: "0" },
+                  }}
+                />
                 <Box>
                   <Typography sx={{ fontWeight: "bold" }}>365 Days</Typography>
                   <Typography variant="body2" color="text.secondary">
@@ -147,10 +141,9 @@ export default function Warranty() {
               </Box>
             </Grid>
             <Grid
-              xs={6}
+              xs={12}
               sm={6}
-              md={6}
-              lg={3}
+              md={3}
               data-aos="flip-left"
               data-aos-delay="700"
               data-aos-duration="1000"
@@ -159,17 +152,21 @@ export default function Warranty() {
               <Box
                 sx={{
                   display: "flex",
-                  flexDirection: "row",
+                  flexDirection: { xs: "column", md: "row" },
                   alignItems: "center",
                   justifyContent: "center",
-                  height: "100%", // Adjust height as needed
-                  borderRight: "1px solid #ccc",
-                  boxShadow: "none",
+                  height: "100%",
+                  padding: "10px 20px",
+                  textAlign: "center",
                 }}
               >
-                <Box>
-                  <PaymentIcon sx={{ fontSize: 50, marginRight: "30px" }} />
-                </Box>
+                <PaymentIcon
+                  sx={{
+                    fontSize: 50,
+                    marginRight: { md: "20px", xs: "0" },
+                    marginBottom: { xs: "10px", md: "0" },
+                  }}
+                />
                 <Box>
                   <Typography sx={{ fontWeight: "bold" }}>Payment</Typography>
                   <Typography variant="body2" color="text.secondary">
@@ -180,7 +177,7 @@ export default function Warranty() {
             </Grid>
           </Grid>
         </Paper>
-      </Container>
+      </Box>
     </Container>
   );
 }

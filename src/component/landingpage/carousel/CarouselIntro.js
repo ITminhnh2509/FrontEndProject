@@ -54,13 +54,11 @@ function CarouselIntro() {
   };
 
   return (
-    <Container maxWidth="fluid" sx={{ padding: 0, marginTop: 10 }}>
+    <Container maxWidth="xl" sx={{ paddingTop: "64px" }}>
       <Box
         sx={{
           flexGrow: 1,
           width: "100%",
-          height: "40vh",
-          position: "relative",
         }}
       >
         <Paper
@@ -70,7 +68,6 @@ function CarouselIntro() {
             display: "flex",
             alignItems: "center",
             height: 50,
-
             bgcolor: "background.default",
           }}
         >
@@ -88,10 +85,10 @@ function CarouselIntro() {
                 <Box
                   component="img"
                   sx={{
-                    height: "auto",
                     display: "block",
+                    overflow: "hidden",
                     width: "100%",
-                    maxHeight: 500,
+                    maxHeight: "500px",
                   }}
                   src={step.imgPath}
                   alt={step.label}

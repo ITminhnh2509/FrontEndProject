@@ -1,15 +1,23 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Box, CardMedia } from "@mui/material";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { addItem } from "../../redux/cart/cartSlice";
+
 export default function Product(props) {
-  const { product, addItem } = props;
+  const { product } = props;
   const dispatch = useDispatch();
+
+  const handleAddToCart = () => {
+    // Always add 1 item to the cart
+    dispatch(addItem({ ...product, quantity: 1 }));
+  };
+
   return (
     <Card
       className="animate__animated animate__fadeIn"
@@ -46,9 +54,9 @@ export default function Product(props) {
           variant="contained"
           size="medium"
           className="btn btn-success"
-          onClick={() => dispatch(addItem(product))}
+          onClick={handleAddToCart}
         >
-          Button
+          Add to Cart
         </Button>
       </CardActions>
     </Card>

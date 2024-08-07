@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -10,26 +10,45 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import MenuIcon from "@mui/icons-material/Menu";
+import CartIcon from "@mui/icons-material/ShoppingCart";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
-import { Button } from "@mui/material";
+import { Button, Badge, Menu, MenuItem } from "@mui/material";
 import logo from "../../img/logo.png";
 import "./header.css";
-const drawerHeight = 240;
+import { useSelector } from "react-redux";
+
+const drawerWidth = 240;
+const appBarHeight = 64; // Adjust this to match your AppBar height
 
 function Header(props) {
   const { window } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+
   const navItems = ["product", "cart"];
+
+  // Access cart state from the Redux store
+  const cartItems = useSelector((state) => state.carts.carts);
+  const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
+  };
+
+  const handleCartClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
   };
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Link to={"/"}>MUI</Link>
-
       <Divider />
       <List>
         {navItems.map((item) => (
@@ -55,7 +74,11 @@ function Header(props) {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar sx={{ background: "#493401" }} component="nav">
+      <AppBar
+        position="fixed"
+        sx={{ background: "#493401", height: appBarHeight }}
+        component="nav"
+      >
         <Toolbar
           sx={{
             display: "flex",
@@ -75,17 +98,17 @@ function Header(props) {
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, textAlign: "center", textDecoration: "none" }}
+            sx={{ flexGrow: 1, textAlign: "center" }}
           >
-            <Link to={"/"} style={{ textDecoration: "none", color: "#ffff" }}>
-              <img className="logo-style" src={logo} />
+            <Link to={"/"} style={{ textDecoration: "none", color: "#fff" }}>
+              <img className="logo-style" src={logo} alt="Logo" />
             </Link>
           </Typography>
           <Box
             sx={{
               display: { xs: "none", sm: "block" },
-              flexGrow: 1,
               textAlign: "center",
+              position: "relative", // Necessary for positioning the cart dropdown
             }}
           >
             {navItems.map((item) => (
@@ -98,44 +121,91 @@ function Header(props) {
                 {item}
               </Button>
             ))}
+            <IconButton
+              color="inherit"
+              onClick={handleCartClick}
+              sx={{ position: "relative" }} // Position relative to show badge
+            >
+              <Badge badgeContent={cartCount} color="secondary">
+                <CartIcon />
+              </Badge>
+            </IconButton>
+            <Menu
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+              PaperProps={{
+                style: {
+                  maxHeight: 400,
+                  width: "20ch",
+                },
+              }}
+            >
+              {cartItems.length === 0 ? (
+                <MenuItem>No items in cart</MenuItem>
+              ) : (
+                cartItems.map((item) => (
+                  <MenuItem key={item.id}>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        width: "100%",
+                      }}
+                    >
+                      <Box sx={{ flexShrink: 0, width: 40, height: 40 }}>
+                        <img
+                          src={item.img || "https://via.placeholder.com/40"}
+                          alt={item.name}
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                          }}
+                        />
+                      </Box>
+                      <Box sx={{ marginLeft: 1, flexGrow: 1 }}>
+                        <Typography variant="body2">{item.name}</Typography>
+                        <Typography variant="body2">
+                          ${item.totalPrice}
+                        </Typography>
+                      </Box>
+                    </Box>
+                  </MenuItem>
+                ))
+              )}
+              <MenuItem>
+                <Link to="/cart">View Cart</Link>
+              </MenuItem>
+            </Menu>
           </Box>
         </Toolbar>
       </AppBar>
-      <nav>
+      <Box component="nav">
         <Drawer
           container={container}
-          variant="persistent"
+          variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}
+          ModalProps={{
+            keepMounted: true, // Better open performance on mobile.
+          }}
           sx={{
             display: { xs: "block", sm: "none" },
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
-              height: drawerHeight,
-              top: 0,
-              right: 0,
-              left: 0,
-              position: "absolute",
-              transform: mobileOpen ? "translateY(0)" : "translateY(-100%)",
-              transition: "transform 0.3s ease",
+              width: drawerWidth,
             },
-          }}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
           }}
         >
           {drawer}
         </Drawer>
-      </nav>
+      </Box>
     </Box>
   );
 }
 
 Header.propTypes = {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
   window: PropTypes.func,
 };
 
