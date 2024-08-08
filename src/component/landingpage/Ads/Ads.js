@@ -25,7 +25,7 @@ export default function Ads() {
       <Container
         data-aos="fade-up"
         data-aos-offset="300"
-        sx={{ marginBottom: 4 }}
+        sx={{ marginBottom: 4, overflow: "hidden" }}
       >
         <Box sx={{ textAlign: "center" }}>
           <Typography variant="h4">

@@ -6,16 +6,20 @@ import CarouselIntro from "../../component/landingpage/carousel/CarouselIntro";
 import Warranty from "../../component/landingpage/IntroCard/Warranty";
 import BestSellet from "./BestSellet";
 import Ads from "../../component/landingpage/Ads/Ads";
+import BrandCarousel from "../../component/landingpage/brand/BrandCarousel";
 
 export default function Home() {
   return (
     <div>
       <Header />
       <CarouselIntro />
+      <BrandCarousel />
+
       <Warranty />
+      <BestSellet />
       <CardIntro />
       <Ads />
-      <BestSellet />
+
       <Footer />
     </div>
   );

@@ -19,8 +19,8 @@ export default function Warranty() {
   return (
     <Container
       className="bg-warranty"
-      maxWidth="xl"
-      sx={{ paddingY: 15, height: "auto" }}
+      maxWidth="fluid"
+      sx={{ paddingY: 15, height: "auto", overflow: "hidden" }}
     >
       <Box sx={{ padding: 4 }}>
         <Paper sx={{ padding: 4 }}>

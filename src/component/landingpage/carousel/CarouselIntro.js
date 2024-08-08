@@ -1,138 +1,168 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import MobileStepper from "@mui/material/MobileStepper";
-import Paper from "@mui/material/Paper";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
-import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
-import SwipeableViews from "react-swipeable-views";
-import { autoPlay } from "react-swipeable-views-utils";
-import { Container } from "@mui/material";
+import React, { useEffect } from "react";
+import {
+  Box,
+  Button,
+  Container,
+  Grid,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
+import { styled } from "@mui/system";
+import homebg1 from "../../../img/home-bg1.jpg";
+import Slider from "react-slick";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { Link } from "react-router-dom";
 
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+// Styled component for ZoomImage
+const ZoomImage = styled(Box)({
+  transition: "transform 0.5s ease",
+  "&:hover": {},
+});
 
-const images = [
-  {
-    label: "San Francisco – Oakland Bay Bridge, United States",
-    imgPath:
-      "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60",
-  },
-  {
-    label: "Bird",
-    imgPath:
-      "https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60",
-  },
-  {
-    label: "Bali, Indonesia",
-    imgPath:
-      "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250",
-  },
-  {
-    label: "Goč, Serbia",
-    imgPath:
-      "https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60",
-  },
-];
+export default function CarouselIntro() {
+  useEffect(() => {
+    AOS.init();
+  }, []);
 
-function CarouselIntro() {
-  const theme = useTheme();
-  const [activeStep, setActiveStep] = React.useState(0);
-  const maxSteps = images.length;
+  const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
 
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
-
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
-  const handleStepChange = (step) => {
-    setActiveStep(step);
+  const settings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 1000,
+    autoplaySpeed: 4000,
+    cssEase: "linear",
   };
 
   return (
-    <Container maxWidth="xl" sx={{ paddingTop: "64px" }}>
-      <Box
-        sx={{
-          flexGrow: 1,
-          width: "100%",
-        }}
-      >
-        <Paper
-          square
-          elevation={0}
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            height: 50,
-            bgcolor: "background.default",
-          }}
-        >
-          <Typography>{images[activeStep].label}</Typography>
-        </Paper>
-        <AutoPlaySwipeableViews
-          axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-          index={activeStep}
-          onChangeIndex={handleStepChange}
-          enableMouseEvents
-        >
-          {images.map((step, index) => (
-            <div key={step.label}>
-              {Math.abs(activeStep - index) <= 2 ? (
-                <Box
-                  component="img"
-                  sx={{
-                    display: "block",
-                    overflow: "hidden",
-                    width: "100%",
-                    maxHeight: "500px",
-                  }}
-                  src={step.imgPath}
-                  alt={step.label}
-                />
-              ) : null}
+    <Container
+      disableGutters
+      maxWidth="fluid"
+      sx={{
+        backgroundImage: `url(${homebg1})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        marginTop: "64px",
+        height: "60vh",
+        overflow: "hidden",
+        padding: 0,
+      }}
+    >
+      <Slider {...settings} style={{ width: "100%" }}>
+        {Array(3)
+          .fill(null)
+          .map((_, index) => (
+            <div key={index}>
+              <Grid
+                container
+                justifyContent="center"
+                alignItems="center"
+                height="100%"
+                spacing={2}
+              >
+                <Grid
+                  data-aos="fade-right"
+                  data-aos-duration="1000"
+                  data-aos-offset="500"
+                  data-aos-delay={index * 1000}
+                  data-aos-easing="ease-in-sine"
+                  item
+                  height="100%"
+                  lg={6}
+                  md={6}
+                  sm={12}
+                  xs={12}
+                >
+                  <Box
+                    color="white"
+                    sx={(theme) => ({
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      textAlign: "center",
+                      height: "100%",
+                      padding: "16px",
+                      transform: "translateX(0%)",
+                      [theme.breakpoints.up("lg")]: {
+                        transform: "translateX(20%)",
+                      },
+                    })}
+                  >
+                    <Typography
+                      pt={4}
+                      fontSize="20px"
+                      variant="overline"
+                      display="block"
+                      gutterBottom
+                    >
+                      New collections items
+                    </Typography>
+                    <Typography
+                      variant="h1"
+                      display="block"
+                      fontWeight="bold"
+                      gutterBottom
+                      sx={{
+                        textTransform: "uppercase",
+                      }}
+                    >
+                      Hottest <br /> picks brand
+                    </Typography>
+                    {index === 0 && !isSmallScreen && (
+                      <Button
+                        component={Link}
+                        to="/product"
+                        variant="contained"
+                        color="primary"
+                      >
+                        Shop now
+                      </Button>
+                    )}
+                  </Box>
+                </Grid>
+                {!isSmallScreen && (
+                  <Grid
+                    data-aos="fade-left"
+                    data-aos-duration="1000"
+                    data-aos-offset="500"
+                    data-aos-delay={(index + 1) * 1000}
+                    item
+                    height="100%"
+                    lg={6}
+                    md={6}
+                    sm={12}
+                    xs={12}
+                  >
+                    <ZoomImage
+                      color="white"
+                      height="100%"
+                      sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        textAlign: "center",
+                        height: "550px",
+                        zIndex: 1,
+                        backgroundImage: `url("https://demo2.themelexus.com/sunic/wp-content/uploads/2024/06/h1-slider-s${
+                          index + 1
+                        }.png")`,
+                        backgroundSize: "contain",
+                        backgroundPosition: "center",
+                        backgroundRepeat: "no-repeat",
+                        padding: "16px",
+                      }}
+                    />
+                  </Grid>
+                )}
+              </Grid>
             </div>
           ))}
-        </AutoPlaySwipeableViews>
-        <MobileStepper
-          steps={maxSteps}
-          position="static"
-          activeStep={activeStep}
-          nextButton={
-            <Button
-              size="small"
-              onClick={handleNext}
-              disabled={activeStep === maxSteps - 1}
-            >
-              Next
-              {theme.direction === "rtl" ? (
-                <KeyboardArrowLeft />
-              ) : (
-                <KeyboardArrowRight />
-              )}
-            </Button>
-          }
-          backButton={
-            <Button
-              size="small"
-              onClick={handleBack}
-              disabled={activeStep === 0}
-            >
-              {theme.direction === "rtl" ? (
-                <KeyboardArrowRight />
-              ) : (
-                <KeyboardArrowLeft />
-              )}
-              Back
-            </Button>
-          }
-        />
-      </Box>
+      </Slider>
     </Container>
   );
 }
-
-export default CarouselIntro;

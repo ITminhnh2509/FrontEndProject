@@ -70,7 +70,7 @@ function Header(props) {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex", overflow: "hidden" }}>
       <CssBaseline />
       <AppBar
         position="fixed"
