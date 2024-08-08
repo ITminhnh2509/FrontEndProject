@@ -30,6 +30,7 @@ export default function Cart() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   const handleRemove = (id) => {
     dispatch(removeItem(id));
   };
@@ -44,12 +45,12 @@ export default function Cart() {
   };
 
   return (
-    <Box sx={{ padding: "64px" }}>
+    <Box sx={{ padding: { xs: "16px", sm: "32px", md: "64px" } }}>
       <Typography variant="h4" gutterBottom>
         Your Cart
       </Typography>
-      <Box sx={{ display: "flex", gap: 2 }}>
-        <Box sx={{ flex: 2 }}>
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={8}>
           {cartItems.length === 0 ? (
             <Typography>Your cart is empty.</Typography>
           ) : (
@@ -62,15 +63,19 @@ export default function Cart() {
                       display: "flex",
                       alignItems: "center",
                       padding: "10px 20px",
+                      flexDirection: { xs: "column", sm: "row" },
                     }}
                   >
                     <CardMedia
                       component="img"
-                      sx={{ width: 100, height: 100 }}
+                      sx={{
+                        width: { xs: "100%", sm: 100 },
+                        height: { xs: "auto", sm: 100 },
+                      }}
                       image={item.img || "https://via.placeholder.com/100"}
                       alt={item.name}
                     />
-                    <CardContent sx={{ flex: 1 }}>
+                    <CardContent sx={{ flex: 1, width: "100%" }}>
                       <Typography variant="h6">{item.name}</Typography>
                       <Typography variant="body2" color="text.secondary">
                         ${item.price}
@@ -80,6 +85,7 @@ export default function Cart() {
                           display: "flex",
                           alignItems: "center",
                           marginTop: 1,
+                          flexWrap: "wrap",
                         }}
                       >
                         <IconButton
@@ -123,6 +129,7 @@ export default function Cart() {
               display: "flex",
               justifyContent: "space-between",
               paddingY: 2,
+              flexDirection: { xs: "column", sm: "row" },
             }}
           >
             <Typography variant="h6">
@@ -135,56 +142,54 @@ export default function Cart() {
               Clear Cart
             </Button>
           )}
-        </Box>
+        </Grid>
 
-        <Divider orientation="vertical" flexItem />
-
-        {/* Form thanh toán */}
-        <Box
-          sx={{
-            flex: 1,
-            padding: 2,
-            border: "1px solid #ddd",
-            borderRadius: 1,
-          }}
-        >
-          <Typography variant="h5" gutterBottom>
-            Checkout
-          </Typography>
-          <TextField
-            label="Full Name"
-            variant="outlined"
-            fullWidth
-            margin="normal"
-          />
-          <TextField
-            label="Email Address"
-            variant="outlined"
-            fullWidth
-            margin="normal"
-          />
-          <TextField
-            label="Shipping Address"
-            variant="outlined"
-            fullWidth
-            margin="normal"
-          />
-          <TextField
-            label="Payment Method"
-            variant="outlined"
-            fullWidth
-            margin="normal"
-          />
-          <Box sx={{ marginTop: 2 }}>
-            <Typography variant="body1" gutterBottom>
-              <strong>Total Amount:</strong> ${totalAmount}
+        <Grid item xs={12} md={4}>
+          <Box
+            sx={{
+              padding: 2,
+              border: "1px solid #ddd",
+              borderRadius: 1,
+            }}
+          >
+            <Typography variant="h5" gutterBottom>
+              Checkout
             </Typography>
-            <Button variant="contained" color="primary" fullWidth>
-              Proceed to Payment
-            </Button>
+            <TextField
+              label="Full Name"
+              variant="outlined"
+              fullWidth
+              margin="normal"
+            />
+            <TextField
+              label="Email Address"
+              variant="outlined"
+              fullWidth
+              margin="normal"
+            />
+            <TextField
+              label="Shipping Address"
+              variant="outlined"
+              fullWidth
+              margin="normal"
+            />
+            <TextField
+              label="Payment Method"
+              variant="outlined"
+              fullWidth
+              margin="normal"
+            />
+            <Box sx={{ marginTop: 2 }}>
+              <Typography variant="body1" gutterBottom>
+                <strong>Total Amount:</strong> ${totalAmount}
+              </Typography>
+              <Button variant="contained" color="primary" fullWidth>
+                Proceed to Payment
+              </Button>
+            </Box>
           </Box>
-        </Box>
-      </Box>
+        </Grid>
+      </Grid>
     </Box>
   );
 }
