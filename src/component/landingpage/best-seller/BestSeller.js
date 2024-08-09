@@ -24,12 +24,12 @@ import "aos/dist/aos.css";
 import { addItem } from "../../../redux/cart/cartSlice";
 const settings = {
   infinite: true,
-  slidesToShow: 4,
-  slidesToScroll: 1,
+  slidesToShow: 3,
+  slidesToScroll: 2,
   autoplay: true,
   autoplaySpeed: 2000,
   dots: true,
-  arrows: false,
+  arrows: true,
   responsive: [
     {
       breakpoint: 1024,

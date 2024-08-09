@@ -114,16 +114,14 @@ export default function CarouselIntro() {
                     >
                       Hottest <br /> picks brand
                     </Typography>
-                    {index === 0 && !isSmallScreen && (
-                      <Button
-                        component={Link}
-                        to="/product"
-                        variant="contained"
-                        color="primary"
-                      >
-                        Shop now
-                      </Button>
-                    )}
+                    <Button
+                      component={Link}
+                      to={`/product`}
+                      variant="contained"
+                      color="primary"
+                    >
+                      Shop now
+                    </Button>
                   </Box>
                 </Grid>
                 {!isSmallScreen && (

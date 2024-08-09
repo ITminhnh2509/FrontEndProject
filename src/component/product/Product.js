@@ -50,7 +50,7 @@ export default function Product(props) {
           <Typography variant="h6">${product.price}</Typography>
         </Box>
         <Box>
-          <Link to={`/detail/${product.id}`}>Chi tiết sản phẩm</Link>
+          <Link to={`/product/detail/${product.id}`}>Chi tiết sản phẩm</Link>
         </Box>
       </CardContent>
       <CardActions>

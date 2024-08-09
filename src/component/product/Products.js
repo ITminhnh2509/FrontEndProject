@@ -4,8 +4,16 @@ import { fetchDataProduct } from "../../redux/productSlice";
 import Pagination from "react-js-pagination";
 import "./product.css";
 import Product from "./Product";
-import { Container, Grid, TextField, Select, MenuItem } from "@mui/material";
+import {
+  Container,
+  Grid,
+  TextField,
+  Select,
+  MenuItem,
+  Box,
+} from "@mui/material";
 import { addItem } from "../../redux/cart/cartSlice";
+import Breadcrumbs from "../breadcrumbs/Breadcrumbs";
 
 export default function Products() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -36,6 +44,9 @@ export default function Products() {
 
   return (
     <Container sx={{ marginTop: 10 }}>
+      <Box>
+        <Breadcrumbs category={products.category} productName={products.name} />
+      </Box>
       <TextField
         label="Search Product"
         variant="outlined"
