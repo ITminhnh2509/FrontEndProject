@@ -1,6 +1,7 @@
 {
   "name": "project-frontend",
   "version": "0.1.0",
+  "homepage": "https://ITminhnh2509.github.io//FrontEndProject/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.13.0",
@@ -25,7 +26,6 @@
     "react-router-dom": "^6.26.0",
     "react-scripts": "5.0.1",
     "react-slick": "^0.30.2",
-    "react-swipeable-views": "^0.14.0",
     "react-transition-group": "^4.4.5",
     "redux": "^5.0.1",
     "slick-carousel": "^1.8.1",
@@ -36,7 +36,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy" :"gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
