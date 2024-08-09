@@ -144,18 +144,28 @@ function Header(props) {
                       }}
                     >
                       <Box sx={{ flexShrink: 0, width: 40, height: 40 }}>
-                        <img
-                          src={item.img || "https://via.placeholder.com/40"}
-                          alt={item.name}
-                          style={{
-                            width: "100%",
-                            height: "100%",
-                            objectFit: "cover",
-                          }}
-                        />
+                        <Link to={`/product/detail/${item.id}`}>
+                          <img
+                            src={item.img || "https://via.placeholder.com/40"}
+                            alt={item.name}
+                            style={{
+                              width: "100%",
+                              height: "100%",
+                              objectFit: "cover",
+                            }}
+                          />
+                        </Link>
                       </Box>
                       <Box sx={{ marginLeft: 1, flexGrow: 1 }}>
-                        <Typography variant="body2">{item.name}</Typography>
+                        <Link to={`/product/detail/${item.id}`}>
+                          <Typography
+                            style={{ color: "black" }}
+                            variant="body2"
+                          >
+                            {item.name}
+                          </Typography>
+                        </Link>
+
                         <Typography variant="body2">
                           ${item.totalPrice}
                         </Typography>

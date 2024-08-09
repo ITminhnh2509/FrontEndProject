@@ -117,15 +117,25 @@ const BestSeller = (props) => {
                 paddingY: 2,
               }}
             >
-              <CardMedia
-                component="img"
-                height="140"
-                image={"https://picsum.photos/300/200"}
-                alt={product.name}
-              />
+              <Link
+                style={{ color: "black" }}
+                to={`/product/detail/${product.id}`}
+              >
+                <CardMedia
+                  component="img"
+                  height="140"
+                  image={"https://picsum.photos/300/200"}
+                  alt={product.name}
+                />
+              </Link>
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                  {product.name}
+                  <Link
+                    style={{ color: "black" }}
+                    to={`/product/detail/${product.id}`}
+                  >
+                    {product.name}
+                  </Link>
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                   {product.description}
@@ -138,9 +148,6 @@ const BestSeller = (props) => {
                   }}
                 >
                   <Typography variant="h6">${product.price}</Typography>
-                </Box>
-                <Box>
-                  <Link to={`/detail/${product.id}`}>Chi tiết sản phẩm</Link>
                 </Box>
               </CardContent>
               <CardActions>

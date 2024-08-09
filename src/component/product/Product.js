@@ -27,15 +27,19 @@ export default function Product(props) {
       className="animate__animated animate__fadeIn"
       sx={{ maxWidth: 345, margin: 2, paddingX: 1, paddingY: 2 }}
     >
-      <CardMedia
-        component="img"
-        height="140"
-        image={"https://picsum.photos/300/200"}
-        alt={product.name}
-      />
+      <Link style={{ color: "black" }} to={`/product/detail/${product.id}`}>
+        <CardMedia
+          component="img"
+          height="140"
+          image={"https://picsum.photos/300/200"}
+          alt={product.name}
+        />
+      </Link>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {product.name}
+          <Link style={{ color: "black" }} to={`/product/detail/${product.id}`}>
+            {product.name}
+          </Link>
         </Typography>
         <Typography variant="body2" color="text.secondary">
           {product.description}
@@ -48,9 +52,6 @@ export default function Product(props) {
           }}
         >
           <Typography variant="h6">${product.price}</Typography>
-        </Box>
-        <Box>
-          <Link to={`/product/detail/${product.id}`}>Chi tiết sản phẩm</Link>
         </Box>
       </CardContent>
       <CardActions>

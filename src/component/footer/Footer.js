@@ -180,19 +180,7 @@ export default function Footer() {
             >
               Contact Us
             </Typography>
-            <Link to="#">
-              <Typography
-                sx={{
-                  opacity: "0.5",
-                  color: "#fff",
-                  marginBottom: 1,
-                  fontWeight: "lighter",
-                }}
-                variant="body2"
-              >
-                Careers
-              </Typography>
-            </Link>
+
             <Link to="#">
               <Typography
                 sx={{

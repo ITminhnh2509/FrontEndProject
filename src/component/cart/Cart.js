@@ -5,6 +5,7 @@ import {
   updateQuantity,
   clearCart,
 } from "../../redux/cart/cartSlice";
+import { Link } from "react-router-dom";
 import {
   Box,
   Card,
@@ -66,17 +67,26 @@ export default function Cart() {
                       flexDirection: { xs: "column", sm: "row" },
                     }}
                   >
-                    <CardMedia
-                      component="img"
-                      sx={{
-                        width: { xs: "100%", sm: 100 },
-                        height: { xs: "auto", sm: 100 },
-                      }}
-                      image={item.img || "https://via.placeholder.com/100"}
-                      alt={item.name}
-                    />
+                    <Link to={`/product/detail/${item.id}`}>
+                      <CardMedia
+                        component="img"
+                        sx={{
+                          width: { xs: "100%", sm: 100 },
+                          height: { xs: "auto", sm: 100 },
+                        }}
+                        image={item.img || "https://via.placeholder.com/100"}
+                        alt={item.name}
+                      />
+                    </Link>
                     <CardContent sx={{ flex: 1, width: "100%" }}>
-                      <Typography variant="h6">{item.name}</Typography>
+                      <Typography variant="h6">
+                        <Link
+                          style={{ color: "black" }}
+                          to={`/product/detail/${item.id}`}
+                        >
+                          {item.name}
+                        </Link>
+                      </Typography>
                       <Typography variant="body2" color="text.secondary">
                         ${item.price}
                       </Typography>

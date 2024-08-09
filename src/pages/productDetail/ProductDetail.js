@@ -3,16 +3,16 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductById } from "../../redux/productSlice";
 import Breadcrumbs from "../../component/breadcrumbs/Breadcrumbs";
-import { addItem } from "../../redux/cart/cartSlice";
-import Swal from "sweetalert2";
 import {
   CircularProgress,
   Typography,
   Box,
+  Button,
   Grid,
   Container,
-  Button,
 } from "@mui/material";
+import { addItem } from "../../redux/cart/cartSlice";
+import Swal from "sweetalert2";
 export default function ProductDetail() {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -26,7 +26,6 @@ export default function ProductDetail() {
       icon: "success",
     });
   };
-
   useEffect(() => {
     dispatch(fetchProductById(id));
     window.scrollTo(0, 0);
@@ -120,16 +119,14 @@ export default function ProductDetail() {
   }
   return (
     <>
-      <Box>
-        <Breadcrumbs category={product.category} productName={product.name} />
-      </Box>
-      <Container>
-        <Box sx={{ padding: 3, marginTop: "64px" }}>
-          <Typography variant="h3" gutterBottom>
-            Product Detail
-          </Typography>
-          {content}
+      <Container sx={{ padding: 3, marginTop: "64px" }}>
+        <Box>
+          <Breadcrumbs category={product.category} productName={product.name} />
         </Box>
+        <Typography variant="h3" gutterBottom>
+          Product Detail
+        </Typography>
+        {content}
       </Container>
     </>
   );
