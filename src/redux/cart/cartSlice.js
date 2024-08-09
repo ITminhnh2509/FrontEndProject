@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  carts: [],
-  totalAmount: 0,
-  totalQuantity: 0,
+  carts: JSON.parse(localStorage.getItem("carts")) || [],
+  totalAmount: JSON.parse(localStorage.getItem("totalAmount")) || 0,
+  totalQuantity: JSON.parse(localStorage.getItem("totalQuantity")) || 0,
   status: "idle",
   error: null,
 };
@@ -32,6 +32,14 @@ const cartSlice = createSlice({
         state.totalQuantity += newItem.quantity;
         state.totalAmount += newItem.quantity * newItem.price;
       }
+
+      // Save updated cart state to localStorage
+      localStorage.setItem("carts", JSON.stringify(state.carts));
+      localStorage.setItem("totalAmount", JSON.stringify(state.totalAmount));
+      localStorage.setItem(
+        "totalQuantity",
+        JSON.stringify(state.totalQuantity)
+      );
     },
     removeItem: (state, action) => {
       const id = action.payload;
@@ -43,6 +51,14 @@ const cartSlice = createSlice({
 
         state.carts = state.carts.filter((item) => item.id !== id);
       }
+
+      // Save updated cart state to localStorage
+      localStorage.setItem("carts", JSON.stringify(state.carts));
+      localStorage.setItem("totalAmount", JSON.stringify(state.totalAmount));
+      localStorage.setItem(
+        "totalQuantity",
+        JSON.stringify(state.totalQuantity)
+      );
     },
     updateQuantity: (state, action) => {
       const { id, quantity } = action.payload;
@@ -56,11 +72,24 @@ const cartSlice = createSlice({
         state.totalQuantity += quantity - oldQuantity;
         state.totalAmount += item.price * (quantity - oldQuantity);
       }
+
+      // Save updated cart state to localStorage
+      localStorage.setItem("carts", JSON.stringify(state.carts));
+      localStorage.setItem("totalAmount", JSON.stringify(state.totalAmount));
+      localStorage.setItem(
+        "totalQuantity",
+        JSON.stringify(state.totalQuantity)
+      );
     },
     clearCart: (state) => {
       state.carts = [];
       state.totalQuantity = 0;
       state.totalAmount = 0;
+
+      // Clear cart data from localStorage
+      localStorage.removeItem("carts");
+      localStorage.removeItem("totalAmount");
+      localStorage.removeItem("totalQuantity");
     },
     setLoading: (state) => {
       state.status = "loading";

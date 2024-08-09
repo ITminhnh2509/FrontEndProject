@@ -18,6 +18,7 @@ export default function Warranty() {
 
   return (
     <Container
+      id="warranty"
       className="bg-warranty"
       maxWidth="fluid"
       sx={{ paddingY: 15, height: "auto", overflow: "hidden" }}

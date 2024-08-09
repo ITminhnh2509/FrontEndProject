@@ -2,8 +2,11 @@ import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDataProduct } from "../../../redux/productSlice";
 import Slider from "react-slick";
+import CardActions from "@mui/material/CardActions";
+import Swal from "sweetalert2";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { Link } from "react-router-dom";
 import "./cardIntro.css";
 import {
   Box,
@@ -18,7 +21,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
-
+import { addItem } from "../../../redux/cart/cartSlice";
 const settings = {
   infinite: true,
   slidesToShow: 4,
@@ -52,7 +55,8 @@ const settings = {
   ],
 };
 
-const BestSeller = () => {
+const BestSeller = (props) => {
+  const { product } = props;
   const dispatch = useDispatch();
   const { products, status, error } = useSelector((state) => state.products);
   const sliderRef = useRef(null);
@@ -62,6 +66,14 @@ const BestSeller = () => {
     AOS.init();
   }, [dispatch]);
 
+  const handleAddToCart = () => {
+    dispatch(addItem({ ...product, quantity: 1 }));
+    Swal.fire({
+      title: "Congrats!",
+      text: "You Added the Product!",
+      icon: "success",
+    });
+  };
   if (status === "loading") {
     return <Typography>Loading...</Typography>;
   }
@@ -80,7 +92,7 @@ const BestSeller = () => {
 
   return (
     <Container>
-      <Typography variant="h3" sx={{ textAlign: "center" }}>
+      <Typography variant="h3" pt={5} sx={{ textAlign: "center" }}>
         Products
       </Typography>
       <Box
@@ -96,20 +108,51 @@ const BestSeller = () => {
       >
         <Slider {...settings} ref={sliderRef}>
           {products.map((product) => (
-            <Card key={product.id} sx={{ padding: "10px", overflow: "hidden" }}>
+            <Card
+              className="animate__animated animate__fadeIn"
+              sx={{
+                maxWidth: 345,
+                margin: 2,
+                paddingX: 1,
+                paddingY: 2,
+              }}
+            >
               <CardMedia
                 component="img"
+                height="140"
+                image={"https://picsum.photos/300/200"}
                 alt={product.name}
-                height="200"
-                image={product.img}
-                className="card-intro"
               />
-              <CardContent sx={{ textAlign: "center" }}>
-                <Typography variant="h6">{product.name}</Typography>
-                <Typography variant="body1" color="text.secondary">
-                  {product.price}
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  {product.name}
                 </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {product.description}
+                </Typography>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    marginTop: 2,
+                  }}
+                >
+                  <Typography variant="h6">${product.price}</Typography>
+                </Box>
+                <Box>
+                  <Link to={`/detail/${product.id}`}>Chi tiết sản phẩm</Link>
+                </Box>
               </CardContent>
+              <CardActions>
+                <Button
+                  variant="contained"
+                  size="medium"
+                  className="btn btn-success"
+                  onClick={handleAddToCart}
+                >
+                  Add to Cart
+                </Button>
+              </CardActions>
             </Card>
           ))}
         </Slider>

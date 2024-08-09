@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchDataProduct } from "./../../redux/productSlice";
+import { fetchDataProduct } from "../../redux/productSlice";
 import Pagination from "react-js-pagination";
 import "./product.css";
 import Product from "./Product";
@@ -18,16 +18,21 @@ export default function Products() {
     (state) => state.products
   );
 
-  const handle_Page = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
-
   useEffect(() => {
     dispatch(
       fetchDataProduct({ page: currentPage, searchTerm, category, material })
     );
     window.scrollTo(0, 0);
   }, [currentPage, searchTerm, category, material, dispatch]);
+  const handle_Page = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+  useEffect(() => {
+    localStorage.setItem("currentPage", currentPage);
+    localStorage.setItem("searchTerm", searchTerm);
+    localStorage.setItem("category", category);
+    localStorage.setItem("material", material);
+  }, [currentPage, searchTerm, category, material]);
 
   return (
     <Container sx={{ marginTop: 10 }}>

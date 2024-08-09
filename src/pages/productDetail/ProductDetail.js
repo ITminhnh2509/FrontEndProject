@@ -21,6 +21,7 @@ export default function ProductDetail() {
 
   useEffect(() => {
     dispatch(fetchProductById(id));
+    window.scrollTo(0, 0);
   }, [dispatch, id]);
 
   let content;
@@ -56,7 +57,6 @@ export default function ProductDetail() {
       </Typography>
     );
   }
-
   return (
     <>
       <Header />

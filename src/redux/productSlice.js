@@ -8,6 +8,20 @@ const initialState = {
   error: "",
   totalPage: 30,
   product: {},
+  categories: [],
+  materials: [],
+};
+
+const loadState = () => {
+  try {
+    const serializedState = localStorage.getItem("productState");
+    if (serializedState) {
+      return JSON.parse(serializedState);
+    }
+  } catch (err) {
+    console.error("Failed to load state from localStorage", err);
+  }
+  return initialState;
 };
 
 const urlAPI =
@@ -40,7 +54,7 @@ export const fetchProductById = createAsyncThunk(
 
 const productSlice = createSlice({
   name: "products",
-  initialState,
+  initialState: loadState(),
   reducers: {},
   extraReducers: (builder) => {
     builder
@@ -53,6 +67,7 @@ const productSlice = createSlice({
         state.categories = action.payload.categories;
         state.materials = action.payload.materials;
         state.totalPage = action.payload.totalPage;
+        localStorage.setItem("productState", JSON.stringify(state));
       })
       .addCase(fetchDataProduct.rejected, (state, action) => {
         state.status = "failed";

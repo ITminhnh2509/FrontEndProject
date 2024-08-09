@@ -59,7 +59,12 @@ function BrandCarousel() {
 
   return (
     <>
-      <Box className="slider-container" mt={3} sx={{ overflow: "hidden" }}>
+      <Box
+        className="slider-container"
+        mt={3}
+        py={3}
+        sx={{ overflow: "hidden" }}
+      >
         <Divider orientation="vertical" flexItem />
         <Slider {...settings}>
           {listimg.map((item, index) => (

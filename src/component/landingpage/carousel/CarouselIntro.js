@@ -13,8 +13,8 @@ import Slider from "react-slick";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { Link } from "react-router-dom";
+import ScrollButton from "./ScrollButton";
 
-// Styled component for ZoomImage
 const ZoomImage = styled(Box)({
   transition: "transform 0.5s ease",
   "&:hover": {},
@@ -48,9 +48,10 @@ export default function CarouselIntro() {
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         marginTop: "64px",
-        height: "60vh",
+        height: "95vh",
         overflow: "hidden",
         padding: 0,
+        position: "relative",
       }}
     >
       <Slider {...settings} style={{ width: "100%" }}>
@@ -163,6 +164,20 @@ export default function CarouselIntro() {
             </div>
           ))}
       </Slider>
+      <Box
+        sx={{
+          position: "absolute",
+          bottom: "20px",
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          zIndex: 10,
+        }}
+      >
+        <ScrollButton />
+      </Box>
     </Container>
   );
 }
