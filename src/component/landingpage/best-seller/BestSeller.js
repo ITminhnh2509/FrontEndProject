@@ -110,24 +110,21 @@ const BestSeller = (props) => {
           {products.map((product) => (
             <Card
               className="animate__animated animate__fadeIn"
-              sx={{
-                maxWidth: 345,
-                margin: 2,
-                paddingX: 1,
-                paddingY: 2,
-              }}
+              sx={{ maxWidth: 345, margin: 2, paddingX: 1, paddingY: 2 }}
             >
               <Link
                 style={{ color: "black" }}
                 to={`/product/detail/${product.id}`}
               >
-                <CardMedia
-                  component="img"
-                  height="440"
-                  image={product.img}
-                  alt={product.name}
-                  className="img-product-card"
-                />
+                <Box className="image-container">
+                  <CardMedia
+                    component="img"
+                    height="440"
+                    image={product.img}
+                    alt={product.name}
+                    className="img-product-card"
+                  />
+                </Box>
               </Link>
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
