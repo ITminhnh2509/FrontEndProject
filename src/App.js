@@ -6,6 +6,7 @@ import Cart from "./pages/cart/cart";
 import ProductDetail from "./pages/productDetail/ProductDetail";
 import Header from "./component/header/Header";
 import Footer from "./component/footer/Footer";
+import Sendemail from "./component/email/Sendemail";
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
         <Route path="/product" element={<Product />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/product/detail/:id" element={<ProductDetail />} />
+        <Route path="/email" element={<Sendemail />} />
       </Routes>
       <Footer />
     </>

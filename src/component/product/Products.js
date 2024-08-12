@@ -93,7 +93,7 @@ export default function Products() {
 
       <Pagination
         activePage={currentPage}
-        itemsCountPerPage={8}
+        itemsCountPerPage={6}
         totalItemsCount={totalPage}
         pageRangeDisplayed={3}
         onChange={handle_Page}

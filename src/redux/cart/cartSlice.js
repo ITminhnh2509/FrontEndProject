@@ -33,7 +33,6 @@ const cartSlice = createSlice({
         state.totalAmount += newItem.quantity * newItem.price;
       }
 
-      // Save updated cart state to localStorage
       localStorage.setItem("carts", JSON.stringify(state.carts));
       localStorage.setItem("totalAmount", JSON.stringify(state.totalAmount));
       localStorage.setItem(
@@ -52,7 +51,6 @@ const cartSlice = createSlice({
         state.carts = state.carts.filter((item) => item.id !== id);
       }
 
-      // Save updated cart state to localStorage
       localStorage.setItem("carts", JSON.stringify(state.carts));
       localStorage.setItem("totalAmount", JSON.stringify(state.totalAmount));
       localStorage.setItem(
@@ -73,7 +71,6 @@ const cartSlice = createSlice({
         state.totalAmount += item.price * (quantity - oldQuantity);
       }
 
-      // Save updated cart state to localStorage
       localStorage.setItem("carts", JSON.stringify(state.carts));
       localStorage.setItem("totalAmount", JSON.stringify(state.totalAmount));
       localStorage.setItem(
@@ -85,8 +82,6 @@ const cartSlice = createSlice({
       state.carts = [];
       state.totalQuantity = 0;
       state.totalAmount = 0;
-
-      // Clear cart data from localStorage
       localStorage.removeItem("carts");
       localStorage.removeItem("totalAmount");
       localStorage.removeItem("totalQuantity");
