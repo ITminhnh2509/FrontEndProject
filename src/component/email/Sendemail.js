@@ -1,8 +1,31 @@
-// src/Sendemail.js
 import React, { useState } from "react";
 import emailjs from "emailjs-com";
+import { TextField, Button, Typography, Container, Box } from "@mui/material";
+import { styled } from "@mui/material/styles";
+
+const useStyles = styled((theme) => ({
+  formContainer: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: theme.spacing(2),
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[3],
+    borderRadius: theme.shape.borderRadius,
+    maxWidth: 400,
+    margin: "0 auto",
+  },
+  formField: {
+    margin: theme.spacing(2, 0),
+  },
+  submitButton: {
+    marginTop: theme.spacing(2),
+  },
+}));
 
 const Sendemail = () => {
+  const classes = useStyles();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -35,7 +58,6 @@ const Sendemail = () => {
         }
       );
 
-    // Reset form fields after submission
     setFormData({
       name: "",
       email: "",
@@ -44,41 +66,57 @@ const Sendemail = () => {
   };
 
   return (
-    <div className="Sendemail">
-      <h2>Contact Us</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name</label>
-          <input
-            type="text"
+    <Container sx={{ marginY: "104px" }}>
+      <Box className={classes.formContainer}>
+        <Typography variant="h4" component="h2" gutterBottom>
+          Contact Us
+        </Typography>
+        <form onSubmit={handleSubmit}>
+          <TextField
+            className={classes.formField}
+            label="Name"
+            variant="outlined"
             name="name"
             value={formData.name}
             onChange={handleChange}
+            fullWidth
             required
           />
-        </div>
-        <div>
-          <label>Email</label>
-          <input
-            type="email"
+          <TextField
+            className={classes.formField}
+            label="Email"
+            variant="outlined"
             name="email"
             value={formData.email}
             onChange={handleChange}
+            fullWidth
             required
+            type="email"
           />
-        </div>
-        <div>
-          <label>Message</label>
-          <textarea
+          <TextField
+            className={classes.formField}
+            label="Message"
+            variant="outlined"
             name="message"
             value={formData.message}
             onChange={handleChange}
+            fullWidth
             required
+            multiline
+            rows={4}
           />
-        </div>
-        <button type="submit">Send</button>
-      </form>
-    </div>
+          <Button
+            className={classes.submitButton}
+            type="submit"
+            variant="contained"
+            color="primary"
+            fullWidth
+          >
+            Send
+          </Button>
+        </form>
+      </Box>
+    </Container>
   );
 };
 
