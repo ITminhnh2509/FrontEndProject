@@ -85,7 +85,7 @@ export default function Products() {
       </Select>
       <Grid container spacing={0}>
         {products.map((item, index) => (
-          <Grid item lg={3} md={4} sm={6} xs={6} key={index}>
+          <Grid item lg={4} md={6} sm={12} xs={12} key={index}>
             <Product product={item} addItem={addItem} />
           </Grid>
         ))}

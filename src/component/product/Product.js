@@ -30,9 +30,10 @@ export default function Product(props) {
       <Link style={{ color: "black" }} to={`/product/detail/${product.id}`}>
         <CardMedia
           component="img"
-          height="140"
-          image={"https://picsum.photos/300/200"}
+          height="440"
+          image={product.img}
           alt={product.name}
+          className="img-product-card"
         />
       </Link>
       <CardContent>

@@ -68,3 +68,8 @@
   flex-direction: column;
   align-items: center;
 }
+.img-product-card {
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: cover !important;
+}

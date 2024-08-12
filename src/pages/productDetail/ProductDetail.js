@@ -41,7 +41,7 @@ export default function ProductDetail() {
         <Grid lg={6} sm={12}>
           <Box
             component={"img"}
-            src={product.image || "https://picsum.photos/300/200"}
+            src={product.img || "https://picsum.photos/300/200"}
             sx={{
               display: "flex",
               justifyContent: "center",
