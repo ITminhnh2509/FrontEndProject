@@ -2,6 +2,7 @@
   "name": "project-frontend",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://ITminhnh2509.github.io/FrontEndProject",
   "dependencies": {
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
@@ -17,6 +18,7 @@
     "animate.css": "^4.1.1",
     "aos": "^2.3.4",
     "axios": "^1.7.3",
+    "gh-pages": "^6.1.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-js-pagination": "^3.0.3",
@@ -36,7 +38,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [

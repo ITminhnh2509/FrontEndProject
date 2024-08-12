@@ -6,7 +6,7 @@ const initialState = {
   currentPage: 1,
   status: "start",
   error: "",
-  totalPage: 30,
+  totalPage: 3,
   product: {},
   categories: [],
   materials: [],
