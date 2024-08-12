@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   removeItem,
@@ -6,6 +6,7 @@ import {
   clearCart,
 } from "../../redux/cart/cartSlice";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 import {
   Box,
   Card,
@@ -27,7 +28,12 @@ export default function Cart() {
   const cartItems = useSelector((state) => state.carts.carts);
   const totalAmount = useSelector((state) => state.carts.totalAmount);
   const totalQuantity = useSelector((state) => state.carts.totalQuantity);
-
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    address: "",
+    paymentMethod: "",
+  });
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -40,9 +46,45 @@ export default function Cart() {
     if (newQuantity < 1) return;
     dispatch(updateQuantity({ id, quantity: newQuantity }));
   };
-
-  const handleClearCart = () => {
+  const handleProceedToPayment = () => {
+    setFormData({
+      fullName: "",
+      email: "",
+      address: "",
+      paymentMethod: "",
+    });
     dispatch(clearCart());
+    Swal.fire({
+      title: "Thank you!",
+      text: "Thank you so much!",
+      icon: "success",
+    });
+  };
+  const handleFormChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const handleClearCart = () => {
+    Swal.fire({
+      title: "Are you sure clear your cart?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your Cart is clear.",
+          icon: "success",
+        });
+        dispatch(clearCart());
+      }
+    });
   };
 
   return (
@@ -167,24 +209,36 @@ export default function Cart() {
             </Typography>
             <TextField
               label="Full Name"
+              name="fullName"
+              value={formData.fullName}
+              onChange={handleFormChange}
               variant="outlined"
               fullWidth
               margin="normal"
             />
             <TextField
               label="Email Address"
+              name="email"
+              value={formData.email}
+              onChange={handleFormChange}
               variant="outlined"
               fullWidth
               margin="normal"
             />
             <TextField
               label="Shipping Address"
+              name="address"
+              value={formData.address}
+              onChange={handleFormChange}
               variant="outlined"
               fullWidth
               margin="normal"
             />
             <TextField
               label="Payment Method"
+              name="paymentMethod"
+              value={formData.paymentMethod}
+              onChange={handleFormChange}
               variant="outlined"
               fullWidth
               margin="normal"
@@ -193,7 +247,12 @@ export default function Cart() {
               <Typography variant="body1" gutterBottom>
                 <strong>Total Amount:</strong> ${totalAmount}
               </Typography>
-              <Button variant="contained" color="primary" fullWidth>
+              <Button
+                variant="contained"
+                color="primary"
+                fullWidth
+                onClick={handleProceedToPayment}
+              >
                 Proceed to Payment
               </Button>
             </Box>

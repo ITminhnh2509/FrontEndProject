@@ -12,3 +12,24 @@
     padding-right: 0px !important;
   }
 }
+
+.bg-box1 {
+  position: relative;
+  background-image: url("https://routine.vn/media/amasty/amoptmobile/wysiwyg/Polo_Premium_jpg.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 50vh;
+  width: 100%;
+  overflow: hidden;
+}
+.bg-box2 {
+  position: relative;
+  background-image: url("https://routine.vn/media/amasty/amoptmobile/wysiwyg/Active_wear_jpg.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 50vh;
+  width: 100%;
+  overflow: hidden;
+}

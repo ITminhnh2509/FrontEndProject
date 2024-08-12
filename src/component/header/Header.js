@@ -27,7 +27,7 @@ function Header(props) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
 
-  const navItems = ["product"];
+  const navItems = ["Product", "Cart"];
 
   const cartItems = useSelector((state) => state.carts.carts);
   const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);

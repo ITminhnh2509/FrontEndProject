@@ -33,8 +33,9 @@ export default function Footer() {
               </Link>
             </Typography>
             <Typography>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Molestias, sint. Voluptates numquam in nobis, rerum modi
+              Welcome to our store! We're delighted to have you here. Feel free
+              to explore, and let us know if there's anything we can assist you
+              with. Enjoy your shopping!
             </Typography>
           </Grid>
           <Grid lg={3} md={3} sm={6} xs={6}>

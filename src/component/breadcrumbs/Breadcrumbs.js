@@ -6,8 +6,6 @@ const Breadcrumbs = ({ category, productName }) => {
   const location = useLocation();
   const { id } = useParams();
   const pathnames = location.pathname.split("/").filter((x) => x);
-
-  // Debugging logs
   console.log("Current Pathnames: ", pathnames);
   console.log("Category: ", category);
   console.log("Product Name: ", productName);

@@ -13,7 +13,7 @@ export default function Home() {
       <Warranty />
       <BestSellet />
       <BrandCarousel />
-      {/* <CardIntro /> */}
+      <CardIntro />
       <Ads />
     </>
   );
