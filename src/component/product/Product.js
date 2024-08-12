@@ -9,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import { Box, CardMedia } from "@mui/material";
 import { addItem } from "../../redux/cart/cartSlice";
 import Swal from "sweetalert2";
+
 export default function Product(props) {
   const { product } = props;
   const dispatch = useDispatch();
@@ -28,13 +29,15 @@ export default function Product(props) {
       sx={{ maxWidth: 345, margin: 2, paddingX: 1, paddingY: 2 }}
     >
       <Link style={{ color: "black" }} to={`/product/detail/${product.id}`}>
-        <CardMedia
-          component="img"
-          height="440"
-          image={product.img}
-          alt={product.name}
-          className="img-product-card"
-        />
+        <Box className="image-container">
+          <CardMedia
+            component="img"
+            height="440"
+            image={product.img}
+            alt={product.name}
+            className="img-product-card"
+          />
+        </Box>
       </Link>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">

@@ -13,6 +13,8 @@ import {
 } from "@mui/material";
 import { addItem } from "../../redux/cart/cartSlice";
 import Swal from "sweetalert2";
+import ReactImageMagnify from "react-image-magnify";
+
 export default function ProductDetail() {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -38,21 +40,30 @@ export default function ProductDetail() {
   } else if (status === "succeeded") {
     content = (
       <Grid spacing={2} container justifyContent={"center"}>
-        <Grid lg={6} sm={12}>
-          <Box
-            component={"img"}
-            src={product.img || "https://picsum.photos/300/200"}
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              width: "100%",
-              maxWidth: "100%",
-              height: "auto",
+        <Grid item lg={6} sm={12}>
+          <ReactImageMagnify
+            {...{
+              smallImage: {
+                alt: product.name || "Product Image",
+                isFluidWidth: true,
+                src: product.img || "https://picsum.photos/300/200",
+              },
+              largeImage: {
+                src: product.img || "https://picsum.photos/800/600",
+                width: 1200,
+                height: 1800,
+              },
+              enlargedImageContainerDimensions: {
+                width: "200%",
+                height: "150%",
+              },
+              style: {
+                zIndex: "10",
+              },
             }}
-          ></Box>
+          />
         </Grid>
-        <Grid lg={6} sm={12} sx={{ position: "relative" }}>
+        <Grid item lg={6} sm={12} sx={{ position: "relative" }}>
           <Box
             sx={{
               display: "flex",

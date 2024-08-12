@@ -73,3 +73,15 @@
   background-position: center !important;
   background-size: cover !important;
 }
+.img-product-card {
+  transition: transform 0.5s ease-in-out;
+}
+
+.img-product-card:hover {
+  transform: scale(1.4);
+}
+
+.image-container {
+  overflow: hidden;
+  border-radius: 4px;
+}
