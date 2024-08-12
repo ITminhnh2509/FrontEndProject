@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/FrontEndProject/static/css/main.91e1998e.css",
-    "main.js": "/FrontEndProject/static/js/main.8076d21d.js",
+    "main.css": "/FrontEndProject/static/css/main.e5744127.css",
+    "main.js": "/FrontEndProject/static/js/main.313b4bef.js",
     "static/media/bg-1.jpg": "/FrontEndProject/static/media/bg-1.78dedd779e2d043a870a.jpg",
     "static/media/home-bg1.jpg": "/FrontEndProject/static/media/home-bg1.bae22f99631872a44f79.jpg",
     "static/media/hm-logo.png": "/FrontEndProject/static/media/hm-logo.0bd1e5aea4a1700235a6.png",
@@ -17,11 +17,11 @@
     "static/media/slick.ttf": "/FrontEndProject/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/FrontEndProject/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/FrontEndProject/index.html",
-    "main.91e1998e.css.map": "/FrontEndProject/static/css/main.91e1998e.css.map",
-    "main.8076d21d.js.map": "/FrontEndProject/static/js/main.8076d21d.js.map"
+    "main.e5744127.css.map": "/FrontEndProject/static/css/main.e5744127.css.map",
+    "main.313b4bef.js.map": "/FrontEndProject/static/js/main.313b4bef.js.map"
   },
   "entrypoints": [
-    "static/css/main.91e1998e.css",
-    "static/js/main.8076d21d.js"
+    "static/css/main.e5744127.css",
+    "static/js/main.313b4bef.js"
   ]
 }
